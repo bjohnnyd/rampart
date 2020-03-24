@@ -1,0 +1,34 @@
+{
+	"annotation": {
+		"name": "Annotate reads",
+		"path": "pipelines/demux_map",
+		"config_file": "config.yaml",
+		"requires": [
+			{
+				"file": "references.fasta",
+				"config_key": "references_file"
+			}
+		]
+	},
+	"consensus": {
+		"name": "Build consensus (ARTIC pipeline)",
+		"path": "pipelines/build_consensus_artic",
+		"config": "min_read_length=400 max_read_length=700"
+	},
+	"export_reads": {
+		"name": "Export reads",
+		"path": "pipelines/bin_to_fastq",
+		"processing": true,
+		"config_file": false,
+		"run_per_sample": true,
+		"options": {
+			"min_read_length": true,
+			"max_read_length": true,
+			"sample_name": true,
+			"barcodes": true,
+			"basecalled_path": true,
+			"annotated_path": true,
+			"output_path": true
+		}
+	}
+}
